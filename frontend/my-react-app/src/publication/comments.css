@@ -80,3 +80,25 @@ b small{
   scale: 1.10;
   color: rgb(71, 134, 155);
 }
+
+@media screen and (max-width: 768px) {
+  .pub {
+    width: 80%;
+    padding: 10px 20px;
+  }
+
+  .cmtForm textarea {
+    width: 100%;
+  }
+
+  .cmt p {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pub {
+    width: 95%;
+    padding: 10px;
+  }
+}

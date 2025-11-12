@@ -215,6 +215,18 @@ const StyledWrapper = styled.div`
   .btn:hover {
     border: 1px solid #2d79f3;
   }
+
+  @media screen and (max-width: 768px) {
+    .form {
+      width: 80%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .form {
+      width: 95%;
+    }
+  }
 `;
 
 export default LogIn;
