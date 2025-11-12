@@ -30,3 +30,9 @@
  background: #fff;
 
 }
+@media screen and (max-width: 768px) {
+    .test{
+        width: 80%;
+        padding-left:15px ;
+    }
+  }

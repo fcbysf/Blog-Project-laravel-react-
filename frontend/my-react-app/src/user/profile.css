@@ -296,21 +296,27 @@ background-color: whitesmoke;
 @media screen and (max-width: 768px) {
   .profile {
     flex-direction: column;
-    padding: 0 20px;
   }
 
   .contLeft,
   .ProfilePublications {
-    width: 100%;
-    margin: 20px 0;
+    width: 85%;
+    margin: 0px 70px 20px 0;
   }
-
+  .actionNav{
+    position: relative;
+    right: 90px;
+    padding-left: 60px;
+  }
+  .actionNav a {
+    margin: 0 0 0 50px;
+  }
   .userPub {
     flex-direction: column;
   }
 
   .userPub img {
-    width: 100%;
+    width: 30%;
     height: auto;
     margin-top: 20px;
   }
