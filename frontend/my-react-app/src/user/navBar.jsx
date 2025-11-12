@@ -151,6 +151,28 @@ const StyledWrapper = styled.div`
   .icon {
     font-size: 20px;
   }
+
+  @media screen and (max-width: 768px) {
+    .button-container {
+      width: 100%;
+      flex-direction: column;
+      height: auto;
+      background-color: transparent;
+    }
+
+    .button {
+      margin: 10px 0;
+    }
+
+    nav {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .right {
+      margin-top: 20px;
+    }
+  }
 `;
 
 export default NavBar;
