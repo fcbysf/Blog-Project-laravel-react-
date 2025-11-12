@@ -1,0 +1,270 @@
+.publications {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.top{
+  display: flex;
+  padding-left: 13px;
+  justify-content: space-between;
+  height: 20%;
+}
+.topLeft{
+display: flex;
+  gap: 10px;
+  padding-left: 13px;
+  height: 20%;
+
+}
+.top img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.top small {
+  font-size: 11px;
+  margin-left: 3px;
+}
+.publication {
+  width: 23.3%;
+  height: 400px;
+  margin: 20px 0 0 20px;
+  background-color: white;
+  border-radius: 15px;
+  padding:10px 0 25px 0;
+  box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.1), -1px -1px 30px rgba(0, 0, 0, 0.1);
+}
+.main{
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.main p{
+    text-indent: 10px;
+    font-size: 14px;
+}
+.main img{
+    display: inline-block;
+    width: 100%;
+    max-height:250px ;
+    object-position: center;
+    margin: auto;
+}
+.actions{
+    height: 15%;
+}
+.comment {
+  background-color: transparent;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  color: #333;
+  transition: 0.3s;
+}
+
+.comment:hover {
+  color: #007bff;
+  transform: scale(1.1);
+}
+.menu{
+    transition: 1s ease;
+    display: flex;
+    gap: 10px;
+}
+.AddForm{
+  border: 2px solid grey;
+  border-radius: 10px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  border-radius: 26% 89% 66% 16% / 41% 18% 82% 38%  ;
+}
+.AddForm input{
+  width: 200px;
+  padding: 15px;
+  border: 0;
+  border-radius: 18px;
+  outline:0;
+}
+.AddForm .submit{
+  padding: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 20px;
+  border: 0;
+}
+.AddForm .submit:hover{
+  scale: 1.10;
+  color: rgb(71, 134, 155);
+}
+
+
+.btn {
+  --main-focus: #2d8cf0;
+  --font-color: #323232;
+  --bg-color-sub: #dedede;
+  --bg-color: #eee;
+  --main-color: #323232;
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.btn, .btn__icon, .btn__text {
+  transition: all 0.3s;
+}
+
+.btn .btn__text {
+  transform: translateX(22px);
+  color: var(--font-color);
+  font-weight: 600;
+}
+
+.btn .btn__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn .svg {
+  width: 20px;
+  fill: var(--main-color);
+}
+
+.btn:hover {
+  background: var(--bg-color);
+}
+
+.btn:hover .btn__text {
+  color: transparent;
+}
+
+.btn:hover .btn__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
+}
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #cdcdcd;
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.add-btn:hover {
+  width: 120px;
+}
+
+.add-btn::before,
+.add-btn::after {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: seagreen;
+}
+
+.add-btn::after {
+  right: 14px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.add-btn::before {
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.icon-btn:focus {
+  outline: none;
+}
+
+.btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.add-btn:hover::before,
+.add-btn:hover::after {
+  width: 4px;
+  border-radius: 2px;
+}
+
+.add-btn:hover .btn-txt {
+  opacity: 1;
+}
+
+.add-icon::after,
+.add-icon::before {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: black;
+  overflow: hidden;
+}
+
+.add-icon::before {
+  left: 22px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.add-icon::after {
+  right: 22px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.add-btn:hover .add-icon::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+
+.add-btn:hover .add-icon::after {
+  right: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}

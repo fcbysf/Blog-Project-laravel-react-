@@ -1,0 +1,204 @@
+body{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: whitesmoke;
+}
+.container{
+  width: 100%;
+  height: 100vh;
+
+}
+
+header nav{
+  padding:0px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+nav h1{
+  font-size: 2rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: rgb(15, 13, 13);
+  font-weight: 700;
+  animation: colori 4.2s  ease;
+}
+nav .right{
+  margin-top: 30px;
+}
+nav .right a {
+  transition: all 0.5s;
+  font-size: 17px;
+  padding: 1ch 2ch;
+  background-color: white;
+  margin: 15px 50px 0 0;
+  color: #000;
+  cursor: pointer;
+  border: none;
+  text-decoration: 0;
+  border-radius: 2px;
+  box-shadow:
+    2px 2px 0px hsl(0, 0%, 90%),
+    4px 4px 0px hsl(0, 0%, 80%),
+    6px 6px 0px hsl(0, 0%, 70%),
+    8px 8px 0px hsl(0, 0%, 60%),
+    10px 10px 0px hsl(0, 0%, 50%),
+    12px 12px 0px hsl(0, 0%, 40%),
+    14px 14px 0px hsl(0, 0%, 30%),
+    16px 16px 0px hsl(0, 0%, 20%),
+    18px 18px 0px hsl(0, 0%, 10%);
+}
+
+nav .right a:hover {
+  background-color: hsl(0, 0%, 23%);
+  color: #fff;
+  box-shadow: none;
+  border-radius: 3px;
+}
+main{
+  padding:0px 40px;
+  display: flex;
+  height: 380px;
+}
+main b{
+  font-size: 3.4rem;
+  color: rgba(0, 0, 0, 1);
+}
+.mainLeft h2{
+  width: 80%;
+  color: rgba(0, 0, 0, .8);
+  font-weight: 200;
+}
+.mainLeft{
+  width: 50%;
+  text-align: center;
+  margin-top: 70px;
+}
+.mainRight{
+  width: 70%;
+  float: right;
+}
+.mainRight img{
+  width: 90%;
+  margin-left:30px ;
+  float: left;
+  border-radius: 10px;
+  animation: fromTop 1s ease;
+}
+.btmLeft{
+  width: 50%;
+}
+.modelImg{
+  width: 100%;
+  animation: fromRight 2s ease;
+}
+.buttom{
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+.btmRight{
+  width: 50%;
+  float: right;
+  margin-top: 30px;
+}
+.topRight{
+  display: flex;
+  flex-wrap: wrap;
+}
+.div1,.div2,.div3{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 41%;
+  height: 130px;
+  padding: 25px;
+  animation: fromRight 2s ease;
+}
+.div1{
+  background-color: rgb(142, 185, 199);
+  animation: fromTopLeft 2s ease;
+}
+.div2{
+  background-color: rgb(216, 216, 216);
+}
+
+@keyframes colori {
+  0%{
+    color: white;
+  }
+  100%{
+    color: rgb(15, 13, 13);
+  }
+}
+@keyframes fromTop {
+  from{
+  margin-top: -3000px;
+  }
+}
+@keyframes fromTopLeft {
+    from{
+  margin-top: -3000px;
+  margin-left: -3000px;
+  }
+}
+@keyframes fromRight {
+      from{
+  margin-bottom: -3000px;
+  }
+}
+
+.cssbuttons-io-button {
+  background: rgb(15, 13, 13);
+  color: white;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  margin:auto 95px;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em rgb(15, 13, 13);
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em rgb(15, 13, 13);
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: rgb(15, 13, 13);
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
