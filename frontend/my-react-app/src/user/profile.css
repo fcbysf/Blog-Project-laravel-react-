@@ -292,3 +292,26 @@ background-color: whitesmoke;
   scale: 1.05;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .profile {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .contLeft,
+  .ProfilePublications {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  .userPub {
+    flex-direction: column;
+  }
+
+  .userPub img {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+}

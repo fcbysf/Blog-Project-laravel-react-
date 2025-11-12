@@ -263,6 +263,26 @@ display: flex;
   top: calc(50% - 2px);
 }
 
+@media screen and (max-width: 768px) {
+  .publication {
+    width: 45%;
+    margin: 20px auto;
+  }
+
+  .AddForm {
+    width: 80%;
+    margin: 20px auto;
+    float: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .publication {
+    width: 90%;
+    margin: 20px auto;
+  }
+}
+
 .add-btn:hover .add-icon::after {
   right: 15px;
   height: 4px;
