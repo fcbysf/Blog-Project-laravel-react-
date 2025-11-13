@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Context } from "../context/contextApi";
 
 const LogIn = () => {
-  console.log(document.cookie.split("=")[1])
+  console.log(document.cookie.split("=")[1],'test')
   const navigate = useNavigate();
   const {endPoint} = useContext(Context)
   const [errors, setErrors] = useState("");
