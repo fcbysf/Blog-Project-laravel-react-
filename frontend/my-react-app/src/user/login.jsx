@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Context } from "../context/contextApi";
 
 const LogIn = () => {
-  console.log(document.cookie.split("=")[1],'test')
+  console.log(getCookie("XSRF-TOKEN"))
   const navigate = useNavigate();
   const {endPoint} = useContext(Context)
   const [errors, setErrors] = useState("");
@@ -28,7 +28,7 @@ const LogIn = () => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "X-XSRF-TOKEN": decodeURIComponent(document.cookie.split("=")[1]),
+        "X-XSRF-TOKEN": getCookie("XSRF-TOKEN"),
       },
       body: JSON.stringify(data),
     })
@@ -41,6 +41,11 @@ const LogIn = () => {
       })
       .then((data) => (data.errors ? setErrors(data.errors) : setErrors("")));
   };
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return decodeURIComponent(parts.pop().split(";").shift());
+}
 
   return (
     <StyledWrapper className="test">
