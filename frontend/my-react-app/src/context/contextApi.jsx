@@ -5,11 +5,11 @@ export const Context = createContext();
 export const UserProvider = ({ children }) => {
   const [isLigedIn, setIsLogedIn] = useState(null);
   const [authUserId, setAuthUserId] = useState(null);
-  const endPoint = "http://localhost:8000/";
+  const endPoint = "https://backend-production-6379.up.railway.app/";
 
   const checkAuth = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/user", {
+      const res = await fetch("https://backend-production-6379.up.railway.app/api/user", {
         method: "GET",
         credentials: "include",
         headers: { Accept: "application/json" },

@@ -1,17 +1,19 @@
-import { use, useEffect, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import styled from "styled-components";
+import { Context } from "../context/contextApi";
 
 const LogIn = () => {
   const navigate = useNavigate();
+  const {endPoint} = useContext(Context)
   const [errors, setErrors] = useState("");
   useEffect(() => {
     if(localStorage.getItem('auth')=='true'){
       navigate('/')
       return
     }
-    fetch("http://localhost:8000/sanctum/csrf-cookie", {
+    fetch(endPoint+"sanctum/csrf-cookie", {
       credentials: "include",
     });
   }, []);
@@ -19,7 +21,7 @@ const LogIn = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    fetch("http://localhost:8000/login", {
+    fetch(endPoint+"login", {
       method: "POST",
       credentials: "include",
       headers: {
