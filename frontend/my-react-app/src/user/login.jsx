@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { Context } from "../context/contextApi";
 
 const LogIn = () => {
-  console.log(getCookie("XSRF-TOKEN"))
   const navigate = useNavigate();
   const {endPoint} = useContext(Context)
   const [errors, setErrors] = useState("");
@@ -16,7 +15,7 @@ const LogIn = () => {
     }
     fetch(endPoint+"sanctum/csrf-cookie", {
       credentials: "include",
-    });
+    }).then(()=>console.log(getCookie("XSRF-TOKEN")));
   }, []);
   const submit = (e) => {
     e.preventDefault();
