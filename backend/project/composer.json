@@ -67,7 +67,8 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
-        ]
+        ],
+        "start": "php -S 0.0.0.0:$PORT -t public"
     },
     "extra": {
         "laravel": {
