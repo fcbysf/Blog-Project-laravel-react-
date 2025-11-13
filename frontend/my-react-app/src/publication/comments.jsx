@@ -7,11 +7,11 @@ dayjs.extend(relativeTime);
 
 export default function Comment() {
   const navigate = useNavigate();
-
+   const {endPoint} = useContext(Context)
   const { id } = useParams();
   const [pub, setPub] = useState(null);
   function fetching() {
-    fetch(`http://localhost:8000/api/publication/${id}`, {
+    fetch(endPoint+`api/publication/${id}`, {
       credentials: "include",
       headers: { accept: "application/json" },
     })
@@ -25,7 +25,7 @@ export default function Comment() {
   }, []);
   const submit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:8000/api/comment", {
+    fetch(endPoint+"api/comment", {
       method: "POST",
       credentials: "include",
       headers: {

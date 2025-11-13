@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const Button = ({ id, fetching }) => {
+   const {endPoint} = useContext(Context)
   const del = (id) => {
-    fetch(`http://localhost:8000/api/publication/${id}`, {
+    fetch(endPoint+`api/publication/${id}`, {
       method: "DELETE",
       credentials: "include",
       headers: {

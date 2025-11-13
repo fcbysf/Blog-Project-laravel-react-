@@ -3,7 +3,6 @@ import NavBar from "./user/navBar";
 
 export default function Home() {
   const showBtn=localStorage.getItem('auth')
-  console.log(showBtn)
   return (
     <div className="container">
       <NavBar />

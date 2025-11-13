@@ -3,18 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 export default function SignUp() {
   const [errors, setErrors] = useState("");
+   const {endPoint} = useContext(Context)
   const navigate = useNavigate()
   useEffect(()=>{
         if(localStorage.getItem('auth')=='true'){
       navigate('/')
       return
     }
-    fetch('http://localhost:8000/sanctum/csrf-cookie',{'credentials' : 'include'})
+    fetch(endPoint+'sanctum/csrf-cookie',{'credentials' : 'include'})
   },[])
   const submit = (e) => {
     e.preventDefault()
     const formData = new FormData(e.target)
-    fetch('http://localhost:8000/register',
+    fetch(endPoint+'register',
         {
             method: 'POST',
             'credentials' : 'include',

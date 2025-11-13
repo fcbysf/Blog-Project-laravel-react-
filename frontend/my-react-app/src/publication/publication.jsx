@@ -80,9 +80,10 @@ export default function Publiaction() {
   const [publication, setPublication] = useState([]);
   const [errors, setErrors] = useState({});
   const [adding, setAdding] = useState(false);
+   const {endPoint} = useContext(Context)
   const [pubAdded, setPubAdded] = useState(false);
   function fetching() {
-    fetch("http://localhost:8000/api/publication", {
+    fetch(endPoint+"api/publication", {
       credentials: "include",
       headers: {
         accept: "application/json",
@@ -106,7 +107,7 @@ export default function Publiaction() {
   const submit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    fetch("http://localhost:8000/api/publication", {
+    fetch(endPoint+"api/publication", {
       method: "POST",
       credentials: "include",
       headers: {

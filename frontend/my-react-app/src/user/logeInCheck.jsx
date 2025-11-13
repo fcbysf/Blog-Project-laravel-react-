@@ -5,11 +5,12 @@ import Loader from "./loader";
 export function CheckAuth() {
   const navigate = useNavigate();
   const [isAuth, setIsAuth] = useState(null)
+  const {endPoint} = useContext(Context)
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/user", {
+        const res = await fetch(endPoint+"api/user", {
           method: "GET",
           credentials: "include",
           headers: { Accept: "application/json" },

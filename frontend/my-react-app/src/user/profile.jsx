@@ -61,7 +61,7 @@ export default function Profile() {
       });
   }, [user]);
   const del = (id) => {
-    fetch(`http://localhost:8000/api/publication/${id}`, {
+    fetch(endPoint+`api/publication/${id}`, {
       method: "DELETE",
       credentials: "include",
       headers: {
@@ -82,7 +82,7 @@ export default function Profile() {
     e.preventDefault();
     const formData = new FormData(e.target);
     formData.append("_method", "PUT");
-    fetch(`http://localhost:8000/api/user/${id}`, {
+    fetch(endPoint+`api/user/${id}`, {
       method: "POST",
       credentials: "include",
       headers: {

@@ -2,9 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const LogOut = () => {
+   const {endPoint} = useContext(Context)
     const navigate = useNavigate()
     const logout =()=>{
-        fetch('http://localhost:8000/logout',{
+        fetch(endPoint+'logout',{
             method:'Post',
             credentials:"include",
             headers:{

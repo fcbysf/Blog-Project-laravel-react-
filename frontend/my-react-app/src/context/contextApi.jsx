@@ -4,7 +4,8 @@ export const Context = createContext();
 
 export const UserProvider = ({ children }) => {
   const [isLigedIn, setIsLogedIn] = useState(null);
-  const [authUserId, setAuthUserId] = useState(null);
+  const [authUserId, setAuthUserId] = useState(null); 
+  
   const endPoint = "https://backend-production-6379.up.railway.app/";
 
   const checkAuth = async () => {
