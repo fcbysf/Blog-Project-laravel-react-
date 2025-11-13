@@ -5,7 +5,11 @@ import LogOut from "../publication/logoutBtn";
 import { Context } from "../context/contextApi";
 
 const NavBar = () => {
-  const { authUserId, isLigedIn} = useContext(Context);
+  const { authUserId, isLigedIn, checkAuth } = useContext(Context);
+  useEffect(() => {
+    checkAuth();
+  }, [isLigedIn]);
+
 
   const style = ({ isActive }) => {
     if (isActive) {

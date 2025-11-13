@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import NavBar from "./navBar";
 import "./profile.css";
@@ -6,10 +6,12 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { DropDown } from "../publication/comments";
 import NotFound from "../notFound";
+import { Context } from "../context/contextApi";
 dayjs.extend(relativeTime);
 
 export default function Profile() {
   const [showPub, setShowPub] = useState(true);
+  const {endPoint} = useContext(Context)
   const [name, setName] =useState('')
   const [bio, setBio] =useState('')
   const [showCom, setShowCom] = useState(false);
@@ -29,7 +31,7 @@ export default function Profile() {
     }
   };
   function fetching() {
-    fetch(`http://localhost:8000/api/user/${id}`, {
+    fetch(endPoint+`api/user/${id}`, {
       credentials: "include",
       headers: { accept: "application/json" },
     })

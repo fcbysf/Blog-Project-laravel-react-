@@ -1,5 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Loader from "./loader";
 
 export function CheckAuth() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ export function CheckAuth() {
   }, [navigate]);
 
   if (isAuth === null) {
-    return <p>Loading...</p>; 
+    return <Loader />; 
   }
 
   return isAuth ? <Outlet /> : null;
