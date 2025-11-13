@@ -1,6 +1,9 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Context } from "../context/contextApi";
 import Loader from "./loader";
+import { useContext } from "react";
+
 
 export function CheckAuth() {
   const navigate = useNavigate();

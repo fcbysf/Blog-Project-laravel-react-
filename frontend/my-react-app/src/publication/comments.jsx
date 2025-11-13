@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext,useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./comments.css";
+import { Context } from "../context/contextApi";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);

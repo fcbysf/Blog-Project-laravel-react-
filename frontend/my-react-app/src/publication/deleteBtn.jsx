@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Context } from "../context/contextApi";
+import { useContext } from "react";
 
 export const Button = ({ id, fetching }) => {
    const {endPoint} = useContext(Context)

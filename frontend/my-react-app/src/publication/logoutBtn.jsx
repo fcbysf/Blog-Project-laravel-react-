@@ -1,5 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+import { Context } from "../context/contextApi";
 import styled from 'styled-components';
+import { useContext } from 'react';
+
 
 const LogOut = () => {
    const {endPoint} = useContext(Context)
