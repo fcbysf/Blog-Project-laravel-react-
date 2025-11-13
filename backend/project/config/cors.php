@@ -2,11 +2,20 @@
 
 return [
 
-    'paths' => ['api/*', 'login', 'logout', 'sanctum/csrf-cookie','register'],
+    'paths' => [
+        'api/*',
+        'login',
+        'logout',
+        'register',
+        'sanctum/csrf-cookie'
+    ],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:5173','https://front-copy-production-415c.up.railway.app'],
+    'allowed_origins' => [
+        'http://localhost:5173',
+        'https://front-copy-production-415c.up.railway.app/'
+    ],
 
     'allowed_origins_patterns' => [],
 
