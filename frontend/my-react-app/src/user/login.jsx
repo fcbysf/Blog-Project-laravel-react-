@@ -15,7 +15,7 @@ const LogIn = () => {
     }
     fetch(endPoint+"sanctum/csrf-cookie", {
       credentials: "include",
-    }).then(()=>console.log(getCookie("XSRF-TOKEN")));
+    })
   }, []);
   const submit = (e) => {
     e.preventDefault();
@@ -27,7 +27,6 @@ const LogIn = () => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "X-XSRF-TOKEN": getCookie("XSRF-TOKEN"),
       },
       body: JSON.stringify(data),
     })
