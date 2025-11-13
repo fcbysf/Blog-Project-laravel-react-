@@ -1,36 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import LogOut from "../publication/logoutBtn";
+import { Context } from "../context/contextApi";
 
 const NavBar = () => {
-  const [id, setId]=useState(null)
-  const [isLigedIn, setIsLogedIn] = useState(null);
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await fetch("http://localhost:8000/api/user", {
-          method: "GET",
-          credentials: "include",
-          headers: { Accept: "application/json" },
-        });
+  const { authUserId, isLigedIn} = useContext(Context);
 
-        if (res.ok) {
-          const data = await res.json()
-          setId(data)
-          setIsLogedIn(true);
-        } else {
-          setIsLogedIn(false);
-        }
-        
-      } catch (err) {
-        console.error("Auth check failed:", err);
-        setIsLogedIn(false);
-      }
-    };
-
-    checkAuth();
-  }, []);
   const style = ({ isActive }) => {
     if (isActive) {
       return {
@@ -73,7 +49,7 @@ const NavBar = () => {
                 <path d="M4 6.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5H7a.5.5 0 0 1 0 1H4.5a.5.5 0 0 1-.5-.5" />
               </svg>
             </NavLink>
-            <NavLink to={`/profile/${id}`} style={style} className="button">
+            <NavLink to={`/profile/${authUserId}`} style={style} className="button">
               <svg
                 className="icon"
                 stroke="currentColor"

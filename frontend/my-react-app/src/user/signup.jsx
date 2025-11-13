@@ -5,6 +5,10 @@ export default function SignUp() {
   const [errors, setErrors] = useState("");
   const navigate = useNavigate()
   useEffect(()=>{
+        if(localStorage.getItem('auth')=='true'){
+      navigate('/')
+      return
+    }
     fetch('http://localhost:8000/sanctum/csrf-cookie',{'credentials' : 'include'})
   },[])
   const submit = (e) => {

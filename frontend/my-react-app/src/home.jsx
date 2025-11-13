@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import NavBar from "./user/navBar";
 
 export default function Home() {
+  const showBtn=localStorage.getItem('auth')
+  console.log(showBtn)
   return (
     <div className="container">
       <NavBar />
@@ -11,6 +13,7 @@ export default function Home() {
             <b>B</b>LOGGY, where you can share your idea to the world <br />
             switch yoLucaa aebiiiii
           </h2>
+          {showBtn==null &&
           <Link to={"/signUp"}>
             <button className="cssbuttons-io-button">
               Get started
@@ -29,7 +32,7 @@ export default function Home() {
                 </svg>
               </div>
             </button>
-          </Link>
+          </Link>}
         </div>
         <div className="mainRight">
           <img

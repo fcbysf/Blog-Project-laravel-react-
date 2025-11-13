@@ -12,6 +12,7 @@ const LogOut = () => {
                 "X-Xsrf-token": decodeURIComponent(document.cookie.split('=')[1])
             }
         }).then(res=>res.ok? navigate('/'):null)
+        .then(()=>localStorage.clear())
     }
   return (
     <StyledWrapper>
