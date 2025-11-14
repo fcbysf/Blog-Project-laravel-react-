@@ -17,11 +17,9 @@ const LogIn = () => {
     // fetch(endPoint+"sanctum/csrf-cookie", {
     //   credentials: "include",
     // })
-    useEffect(() => {
   fetch(endPoint + "api/csrf-token")  // Fetch readable token
     .then(res => res.json())
     .then(data => setCsrfToken(data.token));
-}, []);
   }, []);
   const submit = (e) => {
     e.preventDefault();
