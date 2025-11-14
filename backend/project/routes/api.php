@@ -16,3 +16,11 @@ Route::apiResource('comment', CommentController::class);
 Route::get('/csrf-token', function () {
     return response()->json(['token' => csrf_token()]);
 });
+Route::get('/test-config', function() {
+    return response()->json([
+        'session_same_site' => config('session.same_site'),
+        'session_secure' => config('session.secure'),
+        'session_driver' => config('session.driver'),
+        'app_env' => config('app.env'),
+    ]);
+});
