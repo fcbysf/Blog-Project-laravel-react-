@@ -10,7 +10,7 @@ export const UserProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const res = await fetch("https://backend-production-6379.up.railway.app/api/user", {
+      const res = await fetch(endPoint+"api/user", {
         method: "GET",
         credentials: "include",
         headers: { Accept: "application/json" },
