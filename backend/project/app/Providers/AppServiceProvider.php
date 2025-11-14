@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\ServiceProvider;
 // use Illuminate\Cache\RateLimiting\Limit;
 // use Illuminate\Support\Facades\RateLimiter;
@@ -25,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
         ResetPassword::createUrlUsing(function (object $notifiable, string $token) {
             return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
         });
+            Cookie::queue(Cookie::make('any_cookie', 'value', 0, '/', null, true, true, false, 'none'));
+    // Or override defaults
+    config(['session.same_site' => 'none']);
     }
 // protected function configureRateLimiting(): void
 // {
