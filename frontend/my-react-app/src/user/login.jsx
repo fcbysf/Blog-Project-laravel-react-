@@ -6,42 +6,47 @@ import { Context } from "../context/contextApi";
 
 const LogIn = () => {
   const navigate = useNavigate();
-  const {endPoint} = useContext(Context)
+  const { endPoint } = useContext(Context);
   const [errors, setErrors] = useState("");
   useEffect(() => {
-    if(localStorage.getItem('auth')=='true'){
-      navigate('/')
-      return
+    if (localStorage.getItem("auth") == "true") {
+      navigate("/");
+      return;
     }
-    fetch(endPoint+"sanctum/csrf-cookie", {
+    fetch(endPoint + "sanctum/csrf-cookie", {
       credentials: "include",
-    })
+    });
   }, []);
   const submit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    fetch(endPoint+"login", {
+    fetch(endPoint + "login", {
       method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        "X-XSRF-TOKEN": decodeURIComponent(
+          document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("XSRF-TOKEN="))
+            ?.split("=")[1] || ""
+        ),
       },
-      'X-XSRF-TOKEN' : decodeURIComponent(document.cookie.split('=')[1]),
       body: JSON.stringify(data),
     })
       .then((res) => {
         if (!res.ok) return res.json();
         else {
           navigate("/publication");
-          localStorage.setItem('auth', "true")
+          localStorage.setItem("auth", "true");
         }
       })
       .then((data) => (data.errors ? setErrors(data.errors) : setErrors("")));
   };
 
-console.log(document.cookie)
+  console.log(document.cookie);
   return (
     <StyledWrapper className="test">
       <button className="button2" onClick={() => navigate("/")}>
