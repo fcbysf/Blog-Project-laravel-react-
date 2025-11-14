@@ -28,6 +28,7 @@ const LogIn = () => {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
+      'X-XSRF-TOKEN' : decodeURIComponent(document.cookie.split('=')[1]),
       body: JSON.stringify(data),
     })
       .then((res) => {
@@ -40,7 +41,7 @@ const LogIn = () => {
       .then((data) => (data.errors ? setErrors(data.errors) : setErrors("")));
   };
 
-console.log(document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1])
+console.log(document.cookie.split('=')[1])
   return (
     <StyledWrapper className="test">
       <button className="button2" onClick={() => navigate("/")}>
