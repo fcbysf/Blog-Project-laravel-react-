@@ -27,6 +27,7 @@ const LogIn = () => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        'X-Xsrf-Token': document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1]
       },
       body: JSON.stringify(data),
     })
