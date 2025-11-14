@@ -8,6 +8,15 @@ const LogIn = () => {
   const navigate = useNavigate();
   const { endPoint } = useContext(Context);
   const [errors, setErrors] = useState("");
+  const getXSRFToken = () => {
+  const cookies = document.cookie.split('; ');
+  const xsrfCookie = cookies.find(row => row.startsWith('XSRF-TOKEN='));
+  
+  if (xsrfCookie) {
+    return decodeURIComponent(xsrfCookie.split('=')[1]);
+  }
+  return '';
+};
   useEffect(() => {
     if (localStorage.getItem("auth") == "true") {
       navigate("/");
@@ -27,12 +36,7 @@ const LogIn = () => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "X-XSRF-TOKEN": decodeURIComponent(
-          document.cookie
-            .split("; ")
-            .find((row) => row.startsWith("XSRF-TOKEN="))
-            ?.split("=")[1] || ""
-        ),
+        "X-XSRF-TOKEN": getXSRFToken()
       },
       body: JSON.stringify(data),
     })
