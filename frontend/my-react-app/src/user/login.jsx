@@ -11,7 +11,7 @@ const LogIn = () => {
   const getXSRFToken = () => {
   const cookies = document.cookie.split('; ');
   const xsrfCookie = cookies.find(row => row.startsWith('XSRF-TOKEN='));
-  //test
+
   if (xsrfCookie) {
     return decodeURIComponent(xsrfCookie.split('=')[1]);
   }
@@ -22,42 +22,40 @@ const LogIn = () => {
       navigate("/");
       return;
     }
-    document.requestStorageAccess
-  ?.call(document)
-  .then(() => {
-    console.log("Storage access granted");
-  })
-  .catch(() => {
-    console.log("Storage access denied");
-  });
-
     fetch(endPoint + "sanctum/csrf-cookie", {
       credentials: "include",
     });
   }, []);
-  const submit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-    fetch(endPoint + "login", {
+ const submit = async (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData);
+
+  try {
+    const res = await fetch(endPoint + "login", {
       method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "X-XSRF-TOKEN": getXSRFToken()
+        "X-XSRF-TOKEN": getXSRFToken(),
       },
       body: JSON.stringify(data),
-    })
-      .then((res) => {
-        if (!res.ok) return res.json();
-        else {
-          navigate("/publication");
-          localStorage.setItem("auth", "true");
-        }
-      })
-      .then((data) => (data.errors ? setErrors(data.errors) : setErrors("")));
-  };
+    });
+
+    if (res.ok) {
+      localStorage.setItem("auth", "true");
+      navigate("/publication");
+    } else {
+      const errData = await res.json();
+      setErrors(errData.errors || "Login failed");
+    }
+  } catch (err) {
+    console.error(err);
+    setErrors("Network error");
+  }
+};
+
 
   console.log(document.cookie);
   return (
