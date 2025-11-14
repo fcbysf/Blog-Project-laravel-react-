@@ -7,19 +7,15 @@ import { Context } from "../context/contextApi";
 const LogIn = () => {
   const navigate = useNavigate();
   const {endPoint} = useContext(Context)
-  const [csrfToken, setCsrfToken] = useState("");
   const [errors, setErrors] = useState("");
   useEffect(() => {
     if(localStorage.getItem('auth')=='true'){
       navigate('/')
       return
     }
-    // fetch(endPoint+"sanctum/csrf-cookie", {
-    //   credentials: "include",
-    // })
-  fetch(endPoint + "api/csrf-token")  // Fetch readable token
-    .then(res => res.json())
-    .then(data => setCsrfToken(data.token));
+    fetch(endPoint+"sanctum/csrf-cookie", {
+      credentials: "include",
+    })
   }, []);
   const submit = (e) => {
     e.preventDefault();
@@ -31,7 +27,7 @@ const LogIn = () => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        'X-XSRF-TOKEN': csrfToken,
+        'X-XSRF-TOKEN': document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1]
       },
       body: JSON.stringify(data),
     })
@@ -44,6 +40,7 @@ const LogIn = () => {
       })
       .then((data) => (data.errors ? setErrors(data.errors) : setErrors("")));
   };
+
 
   return (
     <StyledWrapper className="test">
