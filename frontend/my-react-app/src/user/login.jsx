@@ -27,7 +27,7 @@ const LogIn = () => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        'X-Xsrf-Token': document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1]
+        'X-XSRF-TOKEN': document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1]
       },
       body: JSON.stringify(data),
     })
@@ -40,11 +40,6 @@ const LogIn = () => {
       })
       .then((data) => (data.errors ? setErrors(data.errors) : setErrors("")));
   };
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return decodeURIComponent(parts.pop().split(";").shift());
-}
 
   return (
     <StyledWrapper className="test">
