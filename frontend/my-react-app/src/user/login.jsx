@@ -11,7 +11,7 @@ const LogIn = () => {
   const getXSRFToken = () => {
   const cookies = document.cookie.split('; ');
   const xsrfCookie = cookies.find(row => row.startsWith('XSRF-TOKEN='));
-  
+  //test
   if (xsrfCookie) {
     return decodeURIComponent(xsrfCookie.split('=')[1]);
   }
