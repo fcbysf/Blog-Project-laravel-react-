@@ -22,6 +22,15 @@ const LogIn = () => {
       navigate("/");
       return;
     }
+    document.requestStorageAccess
+  ?.call(document)
+  .then(() => {
+    console.log("Storage access granted");
+  })
+  .catch(() => {
+    console.log("Storage access denied");
+  });
+
     fetch(endPoint + "sanctum/csrf-cookie", {
       credentials: "include",
     });
