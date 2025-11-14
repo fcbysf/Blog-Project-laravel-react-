@@ -41,7 +41,7 @@ const LogIn = () => {
       .then((data) => (data.errors ? setErrors(data.errors) : setErrors("")));
   };
 
-console.log(document.cookie.split('=')[1])
+console.log(document.cookie)
   return (
     <StyledWrapper className="test">
       <button className="button2" onClick={() => navigate("/")}>
