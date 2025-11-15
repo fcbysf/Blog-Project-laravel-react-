@@ -30,15 +30,15 @@ export const UserProvider = ({ children }) => {
       setAuthUserId(null);
     }
   };
-  useEffect(() => {
-    checkAuth();
-  }, []);
+  // useEffect(() => {
+  //   checkAuth();
+  // }, []);
 
-  useEffect(() => {
-    if (isLigedIn !== null) {
-      checkAuth();
-    }
-  }, [isLigedIn]);
+  // useEffect(() => {
+  //   if (isLigedIn !== null) {
+  //     checkAuth();
+  //   }
+  // }, [isLigedIn]);
   return (
     <Context.Provider value={{ authUserId, isLigedIn, checkAuth, endPoint }}>
       {children}
