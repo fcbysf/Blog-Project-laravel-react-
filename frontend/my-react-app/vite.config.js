@@ -1,6 +1,6 @@
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [React()],
   server: {
     proxy: {
       '/api': {
