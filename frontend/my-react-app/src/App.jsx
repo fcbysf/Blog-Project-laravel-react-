@@ -11,20 +11,20 @@ import UserProvider from "./context/contextApi";
 
 export default function Login() {
   return (
-    <UserProvider>
+    // <UserProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route element={<CheckAuth />}>
+          {/* <Route element={<CheckAuth />}> */}
             <Route path="/publication" element={<Publiaction />} />
             <Route path="/publication/:id" element={<Comment />} />
             <Route path="/profile/:id/:action?" element={<Profile />}></Route>
-          </Route>
+          {/* </Route> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </UserProvider>
+    // </UserProvider>
   );
 }
