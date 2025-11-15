@@ -10,13 +10,13 @@ const LogIn = () => {
   const [errors, setErrors] = useState("");
 
   // Configure Axios defaults
-  axios.defaults.withXSRFToken = true; // Important for cookies
+  axios.defaults.withCredentials = true; // Important for cookies
   axios.defaults.baseURL = endPoint;
 
   // Fetch CSRF cookie
   const fetchCSRF = async () => {
     try {
-      fetch("/sanctum/csrf-cookie");
+      await axios.get("/sanctum/csrf-cookie");
       console.log("CSRF cookie set");
     } catch (err) {
       console.error("CSRF error", err);
