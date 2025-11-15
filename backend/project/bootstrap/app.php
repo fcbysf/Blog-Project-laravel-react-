@@ -11,16 +11,16 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
-            $middleware->group('api', [
-    \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-    \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        // \Illuminate\Routing\Middleware\SubstituteBindings::class,
+->withMiddleware(function (Middleware $middleware): void {
+    
+    $middleware->statefulApi();
+
+    $middleware->group('api', [
+        \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ]);
+})
 
-
-        //
-    })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
