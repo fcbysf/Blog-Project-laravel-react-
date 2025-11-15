@@ -41,14 +41,8 @@ const LogIn = () => {
     const data = Object.fromEntries(formData);
 
     try {
-      fetch(endPoint + "login", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-        },
-        body: formData,
-      })
+      axios
+        .post("/login", data)
         .then((res) => {
           if (res.ok) {
             navigate("/publication");
