@@ -11,10 +11,10 @@ const LogIn = () => {
 
 
   // Configure Axios defaults
-  axios.defaults.withXSRFToken = true;
-  axios.defaults.withCredentials = true; // Important for cookies
-  axios.defaults.baseURL = endPoint;
-
+axios.defaults.withXSRFToken = true;
+axios.defaults.withCredentials = true; // ✅ must be true
+axios.defaults.baseURL = "https://blog-project-laravel-react-production.up.railway.app"; // your backend URL
+axios.defaults.headers.common["Accept"] = "application/json";
   // Fetch CSRF cookie
   const fetchCSRF = async () => {
     try {
@@ -37,26 +37,17 @@ const LogIn = () => {
   }, []);
 const submit = async (e) => {
   e.preventDefault();
+
   const formData = new FormData(e.target);
   const data = Object.fromEntries(formData);
 
   try {
-    await axios.post("/login", data, {
-      withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-
+    const res = await axios.post("/login", data);
+    console.log("Login success:", res.data);
     navigate("/publication");
   } catch (error) {
-    console.log(error.response);
-    if (error.response?.data?.errors) {
-      setErrors(error.response.data.errors);
-    } else {
-      setErrors(["Login failed"]);
-    }
+    console.error("Login error:", error.response?.data || error.message);
+    setErrors(error.response?.data?.errors || ["Login failed"]);
   }
 };
 console.log(document.cookie.split('=')[1])
