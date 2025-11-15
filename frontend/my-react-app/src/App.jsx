@@ -11,7 +11,7 @@ import UserProvider from "./context/contextApi";
 
 export default function Login() {
   return (
-    // <UserProvider>
+    <UserProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -25,6 +25,6 @@ export default function Login() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    // </UserProvider>
+    </UserProvider>
   );
 }

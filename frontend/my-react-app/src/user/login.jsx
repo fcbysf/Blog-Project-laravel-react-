@@ -30,10 +30,6 @@ const LogIn = () => {
       return;
     }
 
-    // Request storage access if inside iframe (optional)
-    document.requestStorageAccess?.()
-      .then(() => console.log("Storage access granted"))
-      .catch(() => console.log("Storage access denied"));
 
     fetchCSRF();
   }, []);
