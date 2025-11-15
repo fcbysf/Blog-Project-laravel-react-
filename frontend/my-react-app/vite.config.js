@@ -1,16 +1,19 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
       '/api': {
+        target: 'https://api-myapp.up.railway.app',  // Your Railway backend URL
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),  // Optional: Strip /api prefix
+      },
+      '/sanctum': {
         target: 'https://api-myapp.up.railway.app',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/path')
-      }
-    }
-  }
-})
+        secure: true,
+      },
+    },
+  },
+});
