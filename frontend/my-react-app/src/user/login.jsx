@@ -59,7 +59,7 @@ const LogIn = () => {
       }
     }
   };
-console.log(document.cookie.split('=')[1])
+console.log(document.cookie)
   return (
     <StyledWrapper>
       <button className="button2" onClick={() => navigate("/")}>
