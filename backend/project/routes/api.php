@@ -7,7 +7,7 @@ use Illuminate\Http\Request ;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware("auth:sanctum")->get('/user',function(Request $request){
+Route::middleware(["auth:sanctum",'web'])->get('/user',function(Request $request){
 return response()->json($request->user()->id);
 });
 Route::apiResource('user', UserController::class);
