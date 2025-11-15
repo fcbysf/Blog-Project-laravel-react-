@@ -9,6 +9,7 @@ const LogIn = () => {
   const { endPoint } = useContext(Context);
   const [errors, setErrors] = useState("");
 
+
   // Configure Axios defaults
   axios.defaults.withXSRFToken = true;
   axios.defaults.withCredentials = true; // Important for cookies
@@ -34,32 +35,30 @@ const LogIn = () => {
 
     fetchCSRF();
   }, []);
+const submit = async (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData);
 
-  const submit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
+  try {
+    await axios.post("/login", data, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
 
-    try {
-      axios
-        .post("/login", data)
-        .then((res) => {
-          if (res.ok) {
-            navigate("/publication");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error) {
-      console.log(error.response);
-      if (error.response?.data?.errors) {
-        setErrors(error.response.data.errors);
-      } else {
-        setErrors(["Login failed"]);
-      }
+    navigate("/publication");
+  } catch (error) {
+    console.log(error.response);
+    if (error.response?.data?.errors) {
+      setErrors(error.response.data.errors);
+    } else {
+      setErrors(["Login failed"]);
     }
-  };
+  }
+};
 console.log(document.cookie.split('=')[1])
   return (
     <StyledWrapper>
