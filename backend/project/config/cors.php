@@ -6,7 +6,8 @@ return [
     'allowed_methods' => ['*'],
     
     'allowed_origins' => [
-        'https://front-copy-production-415c.up.railway.app'
+        'http://localhost:5173',
+        'https://powerful-youth-production.up.railway.app'
     ],
     
     'allowed_origins_patterns' => [],

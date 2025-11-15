@@ -26,10 +26,10 @@ const LogIn = () => {
 
   // On mount
   useEffect(() => {
-    if (localStorage.getItem("auth") === "true") {
-      navigate("/");
-      return;
-    }
+    // if (localStorage.getItem("auth") === "true") {
+    //   navigate("/");
+    //   return;
+    // }
 
 
     fetchCSRF();
@@ -41,15 +41,23 @@ const LogIn = () => {
     const data = Object.fromEntries(formData);
 
     try {
-      const res = await axios.post("/login", data, {
+      fetch(endPoint + "login", {
+        method: "POST",
+        credentials: "include",
         headers: {
-          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-XSRF-TOKEN": decodeURIComponent(document.cookie.split("=")[1]),
         },
-      });
-
-      localStorage.setItem("auth", "true");
-      navigate("/publication");
-      setErrors("");
+        body: formData,
+      })
+        .then((res) => {
+          if (res.ok) {
+            navigate("/publication");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } catch (error) {
       console.log(error.response);
       if (error.response?.data?.errors) {
@@ -59,7 +67,7 @@ const LogIn = () => {
       }
     }
   };
-console.log(document.cookie)
+console.log(document.cookie.split('=')[1])
   return (
     <StyledWrapper>
       <button className="button2" onClick={() => navigate("/")}>
