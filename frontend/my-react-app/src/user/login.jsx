@@ -3,68 +3,30 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { Context } from "../context/contextApi";
-
 const LogIn = () => {
   const navigate = useNavigate();
   const { endPoint } = useContext(Context);
   const [errors, setErrors] = useState("");
-
   // Configure Axios defaults
-  axios.defaults.withXSRFToken = true; // Important for cookies
-  axios.defaults.baseURL = endPoint;
-
-  // Fetch CSRF cookie
+  axios.defaults.withCredentials = true;  // Keep for cookies
+  axios.defaults.withXSRFToken = true;    // Auto-handles CSRF header
+  axios.defaults.baseURL = endPoint;      // Backend URL
+  // Fetch CSRF cookie using Axios (respects baseURL)
   const fetchCSRF = async () => {
     try {
-      fetch("/sanctum/csrf-cookie");
+      await axios.get("/sanctum/csrf-cookie");  // Now goes to backend
       console.log("CSRF cookie set");
     } catch (err) {
       console.error("CSRF error", err);
     }
   };
-
   // On mount
   useEffect(() => {
     if (localStorage.getItem("auth") === "true") {
       navigate("/");
       return;
     }
-
-    // Request storage access if inside iframe (optional)
-    document.requestStorageAccess?.()
-      .then(() => console.log("Storage access granted"))
-      .catch(() => console.log("Storage access denied"));
-
-    fetchCSRF();
-  }, []);
-
-  const submit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-
-    try {
-      await fetchCSRF(); // ensure CSRF cookie is fresh
-
-      const res = await axios.post("/login", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      localStorage.setItem("auth", "true");
-      navigate("/publication");
-      setErrors("");
-    } catch (error) {
-      console.log(error.response);
-      if (error.response?.data?.errors) {
-        setErrors(error.response.data.errors);
-      } else {
-        setErrors(["Login failed"]);
-      }
-    }
-  };
-
+},[])
   return (
     <StyledWrapper>
       <button className="button2" onClick={() => navigate("/")}>
@@ -105,7 +67,7 @@ const LogIn = () => {
       </form>
     </StyledWrapper>
   );
-};
+}
 
 const StyledWrapper = styled.div`
   .form { display:flex; flex-direction: column; gap: 10px; background-color: #fff; padding:30px; margin:50px auto; width:450px; border-radius:20px; }
