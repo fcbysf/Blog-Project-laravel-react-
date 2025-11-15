@@ -11,7 +11,7 @@ const LogIn = () => {
   // Fetch CSRF cookie before login
   const fetchCSRF = async () => {
     try {
-      await fetch("/sanctum/csrf-cookie", {
+      await fetch("/api/sanctum/csrf-cookie", {
         credentials: "include", // important to store cookies
       });
       console.log("CSRF cookie set");

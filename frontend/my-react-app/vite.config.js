@@ -1,22 +1,25 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
       '/api': {
-        target: 'https://api-myapp.up.railway.app',  // Your Railway backend URL
+        target: 'https://api-myapp.up.railway.app', // your backend
         changeOrigin: true,
         secure: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),  // Optional: Strip /api prefix
       },
       '/sanctum': {
+        target: 'https://api-myapp.up.railway.app', // backend for CSRF
+        changeOrigin: true,
+        secure: true,
+      },
+      '/login': {
         target: 'https://api-myapp.up.railway.app',
         changeOrigin: true,
         secure: true,
       },
     },
   },
-});
+})
