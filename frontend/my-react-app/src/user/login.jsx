@@ -11,6 +11,7 @@ const LogIn = () => {
 
   // Configure Axios defaults
   axios.defaults.withCredentials = true; // Important for cookies
+  axios.defaults.withXSRFToken = true; // Important for cookies
   axios.defaults.baseURL = endPoint;
 
   // Fetch CSRF cookie
