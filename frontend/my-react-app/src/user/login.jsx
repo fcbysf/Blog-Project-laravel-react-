@@ -10,6 +10,7 @@ const LogIn = () => {
   const [errors, setErrors] = useState("");
 
   // Configure Axios defaults
+  axios.defaults.withXSRFToken = true;
   axios.defaults.withCredentials = true; // Important for cookies
   axios.defaults.baseURL = endPoint;
 
@@ -40,8 +41,6 @@ const LogIn = () => {
     const data = Object.fromEntries(formData);
 
     try {
-      await fetchCSRF(); // ensure CSRF cookie is fresh
-
       const res = await axios.post("/login", data, {
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +59,7 @@ const LogIn = () => {
       }
     }
   };
-
+console.log(document.cookie.split('=')[1])
   return (
     <StyledWrapper>
       <button className="button2" onClick={() => navigate("/")}>
