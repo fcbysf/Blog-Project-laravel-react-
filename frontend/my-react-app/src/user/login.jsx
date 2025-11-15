@@ -46,7 +46,6 @@ const LogIn = () => {
         credentials: "include",
         headers: {
           Accept: "application/json",
-          "X-XSRF-TOKEN": decodeURIComponent(document.cookie.split("=")[1]),
         },
         body: formData,
       })
