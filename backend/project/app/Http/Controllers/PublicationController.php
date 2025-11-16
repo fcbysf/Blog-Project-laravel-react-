@@ -30,7 +30,7 @@ class PublicationController extends Controller
         $pub =$request->validated();
         $file = $request->file('image');
         $file->store('images','public');
-        $pub['image'] = url('storage/images/' . $file->hashName());
+        $pub['image'] = url('images/' . $file->hashName());
         $pub=  $request->user()->publication()->create($pub);
         return response()->json($pub);
     }
