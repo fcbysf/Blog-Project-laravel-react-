@@ -49,7 +49,7 @@ class UserController extends Controller
         if($request->hasFile('image')){
             $file = $request->file('image');
             $file->store('images','public');
-            $editedValues['image'] = url('storage/images/' . $file->hashName());
+            $editedValues['image'] = url('images/' . $file->hashName());
             $user->update($editedValues);
         }
         else{

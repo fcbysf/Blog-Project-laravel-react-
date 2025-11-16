@@ -13,6 +13,7 @@ export default function Profile() {
   const [showPub, setShowPub] = useState(true);
   const {endPoint,token} = useContext(Context)
   const [name, setName] =useState('')
+  console.log(token)
   const [bio, setBio] =useState('')
   const [showCom, setShowCom] = useState(false);
   const [user, setUser] = useState(null);
