@@ -112,7 +112,6 @@ export default function Publiaction() {
     const formData = new FormData(e.target);
     fetch(endPoint+"api/publication", {
       method: "POST",
-      credentials: "include",
       headers: {
         accept: "application/json",
         authorization: `Bearer ${token}`,

@@ -64,7 +64,7 @@ export default function Profile() {
       method: "DELETE",
       headers: {
         accept: "application/json",
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
     })
       .then((res) => {
