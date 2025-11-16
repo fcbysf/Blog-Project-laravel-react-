@@ -8,15 +8,14 @@ import { useContext } from "react";
 export function CheckAuth() {
   const navigate = useNavigate();
   const [isAuth, setIsAuth] = useState(null)
-  const {endPoint} = useContext(Context)
+  const {endPoint,token} = useContext(Context)
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
         const res = await fetch(endPoint+"api/user", {
           method: "GET",
-          credentials: "include",
-          headers: { Accept: "application/json" },
+          headers: { Accept: "application/json", Authorization: `Bearer ${token}`},
         });
 
         if (res.ok ) {

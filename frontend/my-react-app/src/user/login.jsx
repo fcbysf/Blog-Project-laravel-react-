@@ -8,10 +8,6 @@ const LogIn = () => {
   const { endPoint, setIsLogedIn,setToken} = useContext(Context);
   const [errors, setErrors] = useState("");
 
-
-
-  useEffect(() => {  
-  }, []);
 const submit = async (e) => {
   e.preventDefault();
 
@@ -28,13 +24,13 @@ const submit = async (e) => {
   .then((res) => {
     if (res.ok) {
       return res.json();
-    } else return res.json();
+    } else {return res.json();}
   })
   .then((data) => {
     if (data.errors) {
       setErrors(data.errors);
     } else {
-      setToken(data.token)
+      setToken(data.token);
       setIsLogedIn(true);
       localStorage.setItem("auth", "true");
       navigate("/publication");
