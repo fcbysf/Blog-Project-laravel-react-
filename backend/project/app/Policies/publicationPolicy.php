@@ -43,7 +43,7 @@ class PublicationPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, publication $publication): bool
+    public function delete(User $user, Publication $publication): bool
     {
         return $user->id === $publication->user_id;
     }
