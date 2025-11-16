@@ -37,8 +37,9 @@ public function store(LoginRequest $request)
     public function destroy(Request $request)
     {
 
-        Auth::logout($request);
+        $request->user()->tokens()->delete();
 
-        return response()->noContent();
+
+        return response()->json(['status' => 'user loggedOut'])    ;
     }
 }
