@@ -4,13 +4,13 @@ import styled from "styled-components";
 import { Context } from "../context/contextApi";
 export default function SignUp() {
   const [errors, setErrors] = useState("");
-   const {endPoint} = useContext(Context)
+   const {endPoint,isLogedIn} = useContext(Context)
   const navigate = useNavigate()
   useEffect(()=>{
-        if(localStorage.getItem('auth')=='true'){
-      navigate('/')
-      return
-    }
+if(isLogedIn){
+  navigate('/')
+  return
+}
   },[])
   const submit = (e) => {
     e.preventDefault()
