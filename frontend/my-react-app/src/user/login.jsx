@@ -12,7 +12,7 @@ if(isLogedIn){
   navigate('/publication')
   return
 }
-},[])
+},[isLogedIn])
 const submit = async (e) => {
   e.preventDefault();
 

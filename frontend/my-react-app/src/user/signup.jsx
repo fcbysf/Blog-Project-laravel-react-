@@ -11,7 +11,7 @@ if(isLogedIn){
   navigate('/')
   return
 }
-  },[])
+  },[isLogedIn])
   const submit = (e) => {
     e.preventDefault()
     const formData = new FormData(e.target)
