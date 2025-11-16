@@ -27,12 +27,13 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         if($request->hasFile('image')){
-            $file =$request->file('image');
-            $file->store('images', 'public');
-            $image = url('/storage/images/' . $file->hashName());
+        $file = $request->file('image');
+        $filename = time().'_'.$file->getClientOriginalName();
+        $file->move(public_path('images'), $filename);
+        $pub['image'] = url('images/' . $filename);
         }
         else{
-            $image = url('/storage/images/defaultprf.png');
+            $image = url('/images/defaultprf.png');
         }
 
         $user = User::create([

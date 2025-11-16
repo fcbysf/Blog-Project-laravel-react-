@@ -47,11 +47,11 @@ class UserController extends Controller
             'image' =>'image'
         ]);
         if($request->hasFile('image')){
-            $file = $request->file('image');
+        $file = $request->file('image');
         $filename = time().'_'.$file->getClientOriginalName();
         $file->move(public_path('images'), $filename);
         $pub['image'] = url('images/' . $filename);
-            $user->update($editedValues);
+        $user->update($editedValues);
         }
         else{
                 $user->update($editedValues);
