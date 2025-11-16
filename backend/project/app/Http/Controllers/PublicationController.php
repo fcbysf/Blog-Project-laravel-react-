@@ -61,6 +61,6 @@ return response()->json(
      */
     public function destroy(Publication $publication)
     {
-            return response()->json($this->authorize('delete',$publication));
+            return response()->json('etst');
     }
 }
