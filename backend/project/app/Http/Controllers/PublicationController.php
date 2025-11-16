@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PubliactionRequest;
 use App\Models\Publication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PublicationController extends Controller
 {
@@ -61,6 +62,6 @@ return response()->json(
      */
     public function destroy(Publication $publication)
     {
-            return response()->json('etst');
+            return response()->json(['publication id'=>$publication->id, "user"=>Auth::user()->id]);
     }
 }
