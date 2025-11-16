@@ -3,14 +3,13 @@ import { Context } from "../context/contextApi";
 import { useContext } from "react";
 
 export const Button = ({ id, fetching }) => {
-   const {endPoint} = useContext(Context)
+   const {endPoint, token} = useContext(Context)
   const del = (id) => {
     fetch(endPoint+`api/publication/${id}`, {
       method: "DELETE",
-      credentials: "include",
       headers: {
          accept: "application/json",
-         'X-Xsrf-token': decodeURIComponent(document.cookie.split('=')[1])
+         authorization: `Bearer ${token}`,
        },
     }).then(res=>res.ok&&fetching());
   };

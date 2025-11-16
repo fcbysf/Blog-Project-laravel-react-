@@ -11,7 +11,7 @@ dayjs.extend(relativeTime);
 
 export default function Profile() {
   const [showPub, setShowPub] = useState(true);
-  const {endPoint} = useContext(Context)
+  const {endPoint,token} = useContext(Context)
   const [name, setName] =useState('')
   const [bio, setBio] =useState('')
   const [showCom, setShowCom] = useState(false);
@@ -32,8 +32,7 @@ export default function Profile() {
   };
   function fetching() {
     fetch(endPoint+`api/user/${id}`, {
-      credentials: "include",
-      headers: { accept: "application/json" },
+      headers: { accept: "application/json",authorization: `Bearer ${token}`},
     })
       .then((res) => {
         if (res.ok) {
@@ -63,10 +62,9 @@ export default function Profile() {
   const del = (id) => {
     fetch(endPoint+`api/publication/${id}`, {
       method: "DELETE",
-      credentials: "include",
       headers: {
         accept: "application/json",
-        "X-XSRF-TOKEN": decodeURIComponent(document.cookie.split("=")[1]),
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => {
@@ -84,10 +82,9 @@ export default function Profile() {
     formData.append("_method", "PUT");
     fetch(endPoint+`api/user/${id}`, {
       method: "POST",
-      credentials: "include",
       headers: {
         Accept: "application/json",
-        "X-Xsrf-token": decodeURIComponent(document.cookie.split("=")[1]),
+        Authorization: `Bearer ${token}`,
       },
       body: formData,
     })

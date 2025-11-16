@@ -5,18 +5,17 @@ import { useContext } from 'react';
 
 
 const LogOut = () => {
-   const {endPoint} = useContext(Context)
+   const {endPoint, token} = useContext(Context)
     const navigate = useNavigate()
     const logout =()=>{
-        fetch(endPoint+'logout',{
-            method:'Post',
-            credentials:"include",
+        fetch(endPoint+'api/logout',{
+            method:'POST',
             headers:{
                 'accept': 'application/json',
-                "X-Xsrf-token": decodeURIComponent(document.cookie.split('=')[1])
+                Authorization: `Bearer ${token}`
             }
         }).then(res=>res.ok? navigate('/'):null)
-        .then(()=>localStorage.clear())
+        .then(()=>sessionStorage.clear())
     }
   return (
     <StyledWrapper>

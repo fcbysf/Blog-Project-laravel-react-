@@ -1,4 +1,4 @@
-import { useContext,useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./comments.css";
 import { Context } from "../context/contextApi";
@@ -8,13 +8,12 @@ dayjs.extend(relativeTime);
 
 export default function Comment() {
   const navigate = useNavigate();
-   const {endPoint} = useContext(Context)
+  const { endPoint, token } = useContext(Context);
   const { id } = useParams();
   const [pub, setPub] = useState(null);
   function fetching() {
-    fetch(endPoint+`api/publication/${id}`, {
-      credentials: "include",
-      headers: { accept: "application/json" },
+    fetch(endPoint + `api/publication/${id}`, {
+      headers: { accept: "application/json", authorization: `Bearer ${token}` },
     })
       .then((res) => {
         return res.ok ? res.json() : null;
@@ -26,12 +25,11 @@ export default function Comment() {
   }, []);
   const submit = (e) => {
     e.preventDefault();
-    fetch(endPoint+"api/comment", {
+    fetch(endPoint + "api/comment", {
       method: "POST",
-      credentials: "include",
       headers: {
         Accept: "application/json",
-        "X-Xsrf-token": decodeURIComponent(document.cookie.split("=")[1]),
+        authorization: `Bearer ${token}`,
       },
       body: new FormData(e.target),
     })
@@ -45,10 +43,7 @@ export default function Comment() {
         style={{ width: "100%", backgroundColor: "whitesmoke" }}
       >
         <div className="backBtn">
-          <button
-            className="button2"
-            onClick={() => navigate("/publication")}
-          >
+          <button className="button2" onClick={() => navigate("/publication")}>
             <svg
               height="16"
               width="16"
@@ -134,13 +129,14 @@ import styled from "styled-components";
 
 export const DropDown = ({ id, fetching, comment }) => {
   const [showMenu, setShowMenu] = useState(true);
+  const { endPoint, token } = useContext(Context);
+  
   const del = (id) => {
-    fetch(`http://localhost:8000/api/comment/${id}`, {
+    fetch(endPoint + `api/comment/${id}`, {
       method: "DELETE",
-      credentials: "include",
       headers: {
         accept: "application/json",
-        "X-XSRF-TOKEN": decodeURIComponent(document.cookie.split("=")[1]),
+        authorization: `Bearer ${token}`,
       },
     })
       .then((res) => {
