@@ -61,11 +61,6 @@ return response()->json(
      */
     public function destroy(Publication $publication)
     {
-        if(!$this->authorize('delete',$publication)){
             return response()->json($this->authorize('delete',$publication));
-        }
-        $this->authorize('delete',$publication);
-        $publication->delete();
-        return response()->noContent();
     }
 }
