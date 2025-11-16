@@ -18,18 +18,16 @@ public function store(LoginRequest $request)
 {
     $user = User::where('email', $request->email)->first();
 
-    if (!$user || !Hash::check($request->password, $user->password)) {
+    if (!Auth::attempt($request->validated())) {
         return response()->json(['message' => 'Invalid credentials'], 401);
     }
 
-    if($request->password == $user->password){
         $token = $user->createToken('auth_token')->plainTextToken;
         
             return response()->json([
                 'token' => $token,
                 'token_type' => 'Bearer'
             ]);
-    }
 }
 
 
@@ -40,7 +38,7 @@ public function store(LoginRequest $request)
     {
 
         Auth::logout($request);
-        
+
         return response()->noContent();
     }
 }
