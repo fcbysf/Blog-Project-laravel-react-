@@ -33,7 +33,7 @@ export const UserProvider = ({ children }) => {
 
 
   return (
-    <Context.Provider value={{ authUserId,setIsLogedIn, isLogedIn, endPoint, token, setToken,setAuthUserId }}>
+    <Context.Provider value={{ authUserId,setIsLogedIn, isLogedIn, endPoint, token, setToken,setAuthUserId, checkAuth}}>
       {children}
     </Context.Provider>
   );
