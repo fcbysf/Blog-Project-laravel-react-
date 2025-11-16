@@ -29,8 +29,9 @@ class PublicationController extends Controller
     {
         $pub =$request->validated();
         $file = $request->file('image');
-        $file->store('images','public');
-        $pub['image'] = url('images/' . $file->hashName());
+        $filename = time().'_'.$file->getClientOriginalName();
+        $file->move(public_path('images'), $filename);
+        $pub['image'] = url('images/' . $filename);
         $pub=  $request->user()->publication()->create($pub);
         return response()->json($pub);
     }
