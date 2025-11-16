@@ -5,10 +5,10 @@ import LogOut from "../publication/logoutBtn";
 import { Context } from "../context/contextApi";
 
 const NavBar = () => {
-  const { authUserId, isLigedIn, checkAuth } = useContext(Context);
+  const { authUserId, isLogedIn, checkAuth,token } = useContext(Context);
   useEffect(() => {
     checkAuth();
-  }, [isLigedIn]);
+  }, [isLogedIn,token]);
 
 
   const style = ({ isActive }) => {
@@ -88,8 +88,8 @@ const NavBar = () => {
           </div>
 
           <div className="right">
-            {isLigedIn === false && <Link to={"/login"}>Login</Link>}
-            {isLigedIn && <LogOut />}
+            {isLogedIn === false && <Link to={"/login"}>Login</Link>}
+            {isLogedIn && <LogOut />}
           </div>
         </nav>
       </header>
