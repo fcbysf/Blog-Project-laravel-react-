@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import NavBar from "./user/navBar";
+import { useContext } from "react";
+import { Context } from "./context/contextApi";
 
 export default function Home() {
-  const showBtn=localStorage.getItem('auth')
+  const {isLogedIn} = useContext(Context)
   return (
     <div className="container">
       <NavBar />
@@ -12,7 +14,7 @@ export default function Home() {
             <b>B</b>LOGGY, where you can share your idea to the world <br />
             switch yoLucaa aebiiiii
           </h2>
-          {showBtn==null &&
+          {!isLogedIn&&
           <Link to={"/signUp"}>
             <button className="cssbuttons-io-button">
               Get started

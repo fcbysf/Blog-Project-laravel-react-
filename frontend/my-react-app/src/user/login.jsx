@@ -41,7 +41,6 @@ const submit = async (e) => {
     console.log(err);
   });
 };
-console.log(token)
   return (
     <StyledWrapper>
       <button className="button2" onClick={() => navigate("/")}>
