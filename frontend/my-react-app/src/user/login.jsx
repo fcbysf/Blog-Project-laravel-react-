@@ -5,7 +5,7 @@ import { Context } from "../context/contextApi";
 
 const LogIn = () => {
   const navigate = useNavigate();
-  const { endPoint, setIsLogedIn,setToken} = useContext(Context);
+  const { endPoint, setIsLogedIn,setToken,token} = useContext(Context);
   const [errors, setErrors] = useState("");
 
 const submit = async (e) => {
