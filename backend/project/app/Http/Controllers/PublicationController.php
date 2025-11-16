@@ -62,6 +62,6 @@ return response()->json(
      */
     public function destroy(Publication $publication)
     {
-            return response()->json(['publication id'=>$publication->id, "user"=>Auth::user()->id]);
+            return response()->json(['publication id'=>$publication->user_id, "user"=>Auth::user()->id]);
     }
 }
