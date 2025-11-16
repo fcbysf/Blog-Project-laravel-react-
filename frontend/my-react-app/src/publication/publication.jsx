@@ -82,13 +82,14 @@ export default function Publiaction() {
   const [publication, setPublication] = useState([]);
   const [errors, setErrors] = useState({});
   const [adding, setAdding] = useState(false);
-   const {endPoint} = useContext(Context)
+   const {endPoint,token} = useContext(Context)
   const [pubAdded, setPubAdded] = useState(false);
+  console.log(token)
   function fetching() {
     fetch(endPoint+"api/publication", {
-      credentials: "include",
       headers: {
         accept: "application/json",
+        authorization: `Bearer ${token}`,
       },
     })
       .then((res) => (res.ok ? res.json() : null))
@@ -114,7 +115,7 @@ export default function Publiaction() {
       credentials: "include",
       headers: {
         accept: "application/json",
-        "X-XSrf-token": decodeURIComponent(document.cookie.split("=")[1]),
+        authorization: `Bearer ${token}`,
       },
       body: formData,
     })
