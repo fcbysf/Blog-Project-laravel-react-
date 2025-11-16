@@ -32,7 +32,7 @@ export function CheckAuth() {
     };
 
     checkAuth();
-  }, [navigate]);
+  }, [navigate,token]);
 
   if (isAuth === null) {
     return <Loader />; 
