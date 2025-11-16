@@ -61,7 +61,6 @@ const submit = async (e) => {
           <input placeholder="Enter your Password" name="password" type="password" />
         </div>
 
-        {errors && <p style={{ color: "red" }}>{errors}</p>}
 
         <div className="flex-row">
           <div>
