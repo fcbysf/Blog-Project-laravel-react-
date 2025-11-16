@@ -2,10 +2,9 @@
 
 namespace App\Policies;
 
+use App\Models\Publication;
 use App\Models\User;
-use App\Models\publication;
 use Illuminate\Auth\Access\Response;
-use Illuminate\Support\Facades\Auth;
 
 class PublicationPolicy
 {
@@ -20,7 +19,7 @@ class PublicationPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, publication $publication): bool
+    public function view(User $user, Publication $publication): bool
     {
         return false;
     }
@@ -36,7 +35,7 @@ class PublicationPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, publication $publication): bool
+    public function update(User $user, Publication $publication): bool
     {
         return false;
     }
@@ -52,7 +51,7 @@ class PublicationPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, publication $publication): bool
+    public function restore(User $user, Publication $publication): bool
     {
         return false;
     }
@@ -60,7 +59,7 @@ class PublicationPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, publication $publication): bool
+    public function forceDelete(User $user, Publication $publication): bool
     {
         return false;
     }
