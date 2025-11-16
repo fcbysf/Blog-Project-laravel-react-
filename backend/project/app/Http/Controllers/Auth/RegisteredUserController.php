@@ -30,7 +30,7 @@ class RegisteredUserController extends Controller
         $file = $request->file('image');
         $filename = time().'_'.$file->getClientOriginalName();
         $file->move(public_path('images'), $filename);
-        $pub['image'] = url('images/' . $filename);
+        $image= url('images/' . $filename);
         }
         else{
             $image = url('/images/defaultprf.png');

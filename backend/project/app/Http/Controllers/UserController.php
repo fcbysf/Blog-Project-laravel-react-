@@ -50,7 +50,7 @@ class UserController extends Controller
         $file = $request->file('image');
         $filename = time().'_'.$file->getClientOriginalName();
         $file->move(public_path('images'), $filename);
-        $pub['image'] = url('images/' . $filename);
+        $editedValues['image'] = url('images/' . $filename);
         $user->update($editedValues);
         }
         else{
