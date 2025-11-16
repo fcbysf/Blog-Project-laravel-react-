@@ -5,7 +5,7 @@ export const Context = createContext();
 export const UserProvider = ({ children }) => {
   const [isLogedIn, setIsLogedIn] = useState(null);
   const [authUserId, setAuthUserId] = useState(null);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(sessionStorage.getItem("token") || null);
   const endPoint = "https://firstbackenddeploy.up.railway.app/";
   const checkAuth = async () => {
     try {

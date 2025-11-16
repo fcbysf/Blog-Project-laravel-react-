@@ -31,6 +31,7 @@ const submit = async (e) => {
       setErrors(data.errors);
     } else {
       setToken(data.token);
+      sessionStorage.setItem("token", data.token);
       setIsLogedIn(true);
       localStorage.setItem("auth", "true");
       navigate("/publication");
