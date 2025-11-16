@@ -5,20 +5,12 @@ import { Context } from "../context/contextApi";
 
 const LogIn = () => {
   const navigate = useNavigate();
-  const { endPoint } = useContext(Context);
+  const { endPoint, setIsLogedIn,setToken} = useContext(Context);
   const [errors, setErrors] = useState("");
 
 
 
-  // On mount
-  useEffect(() => {
-    // if (localStorage.getItem("auth") === "true") {
-    //   navigate("/");
-    //   return;
-    // }
-
-
-  
+  useEffect(() => {  
   }, []);
 const submit = async (e) => {
   e.preventDefault();
@@ -33,6 +25,24 @@ const submit = async (e) => {
     },
     body: JSON.stringify(data)
   })
+  .then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else return res.json();
+  })
+  .then((data) => {
+    if (data.errors) {
+      setErrors(data.errors);
+    } else {
+      setToken(data.token)
+      setIsLogedIn(true);
+      localStorage.setItem("auth", "true");
+      navigate("/publication");
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 };
   return (
     <StyledWrapper>

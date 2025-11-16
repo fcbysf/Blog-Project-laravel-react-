@@ -27,7 +27,7 @@ export default function SignUp() {
     ).then(res=>!res.ok && res.json() )
     .then(data=>{
         if(data.errors){setErrors(data.errors)}
-        else{setErrors('')} 
+        else{setErrors('');navigate('/publication')} 
   })
   };
   return (

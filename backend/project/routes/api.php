@@ -29,6 +29,4 @@ return response()->json($request->user()->id);
 Route::apiResource('user', UserController::class);
 Route::apiResource('publication', PublicationController::class);
 Route::apiResource('comment', CommentController::class);
-Route::get('/csrf-token', function () {
-    return response()->json(['token' => csrf_token()]);
-});
+

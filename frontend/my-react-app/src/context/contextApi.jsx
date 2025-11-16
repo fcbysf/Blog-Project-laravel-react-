@@ -4,43 +4,38 @@ export const Context = createContext();
 
 export const UserProvider = ({ children }) => {
   const [isLigedIn, setIsLogedIn] = useState(null);
-  const [authUserId, setAuthUserId] = useState(null); 
-  
+  const [authUserId, setAuthUserId] = useState(null);
+  const [token, setToken] = useState(null);
   const endPoint = "https://firstbackenddeploy.up.railway.app/";
-
   const checkAuth = async () => {
     try {
-      const res = await fetch(endPoint+"api/user", {
+      const res = await fetch(endPoint + "api/user", {
         method: "GET",
-        credentials: "include",
-        headers: { Accept: "application/json" },
+        headers: { Accept: "application/json", Authorization: `Bearer ${token}`},
       });
 
       if (res.ok) {
         const data = await res.json();
-        setAuthUserId(data);
         setIsLogedIn(true);
+        setAuthUserId(data.id);
+        setToken(data.token)
       } else {
         setIsLogedIn(false);
-        setAuthUserId(null);
       }
     } catch (err) {
       console.error("Auth check failed:", err);
       setIsLogedIn(false);
-      setAuthUserId(null);
     }
   };
-  useEffect(() => {
-    checkAuth();
-  }, []);
 
   useEffect(() => {
-    if (isLigedIn !== null) {
-      checkAuth();
-    }
-  }, [isLigedIn]);
+    checkAuth();
+  }, [token]);
+
+
+
   return (
-    <Context.Provider value={{ authUserId, isLigedIn, checkAuth, endPoint }}>
+    <Context.Provider value={{ authUserId,setIsLogedIn, isLigedIn, endPoint, token, setToken,setAuthUserId }}>
       {children}
     </Context.Provider>
   );
