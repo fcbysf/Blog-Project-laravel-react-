@@ -6,7 +6,7 @@ export const UserProvider = ({ children }) => {
   const [isLigedIn, setIsLogedIn] = useState(null);
   const [authUserId, setAuthUserId] = useState(null); 
   
-  const endPoint = "https://blog-project-laravel-react-production.up.railway.app/";
+  const endPoint = "https://firstbackenddeploy.up.railway.app/";
 
   const checkAuth = async () => {
     try {
@@ -30,15 +30,15 @@ export const UserProvider = ({ children }) => {
       setAuthUserId(null);
     }
   };
-  // useEffect(() => {
-  //   checkAuth();
-  // }, []);
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
-  // useEffect(() => {
-  //   if (isLigedIn !== null) {
-  //     checkAuth();
-  //   }
-  // }, [isLigedIn]);
+  useEffect(() => {
+    if (isLigedIn !== null) {
+      checkAuth();
+    }
+  }, [isLigedIn]);
   return (
     <Context.Provider value={{ authUserId, isLigedIn, checkAuth, endPoint }}>
       {children}

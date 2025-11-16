@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
 import styled from "styled-components";
 import { Context } from "../context/contextApi";
 
@@ -10,20 +9,6 @@ const LogIn = () => {
   const [errors, setErrors] = useState("");
 
 
-  // Configure Axios defaults
-axios.defaults.withXSRFToken = true;
-axios.defaults.withCredentials = true; // ✅ must be true
-axios.defaults.baseURL = "https://blog-project-laravel-react-production.up.railway.app"; // your backend URL
-axios.defaults.headers.common["Accept"] = "application/json";
-  // Fetch CSRF cookie
-  const fetchCSRF = async () => {
-    try {
-      await axios.get("/sanctum/csrf-cookie");
-      console.log("CSRF cookie set");
-    } catch (err) {
-      console.error("CSRF error", err);
-    }
-  };
 
   // On mount
   useEffect(() => {
@@ -33,24 +18,22 @@ axios.defaults.headers.common["Accept"] = "application/json";
     // }
 
 
-    fetchCSRF();
+  
   }, []);
 const submit = async (e) => {
   e.preventDefault();
 
   const formData = new FormData(e.target);
   const data = Object.fromEntries(formData);
-
-  try {
-    const res = await axios.post("/login", data);
-    console.log("Login success:", res.data);
-    navigate("/publication");
-  } catch (error) {
-    console.error("Login error:", error.response?.data || error.message);
-    setErrors(error.response?.data?.errors || ["Login failed"]);
-  }
+  fetch(endPoint + "api/login", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  })
 };
-console.log(document.cookie.split('=')[1])
   return (
     <StyledWrapper>
       <button className="button2" onClick={() => navigate("/")}>
