@@ -7,7 +7,7 @@ return [
     
     'allowed_origins' => [
         'http://localhost:5173',
-        'https://powerful-youth-production.up.railway.app'
+        'https://powerful-youth-production.up.railway.aphttps://firstdeploy.up.railway.app'
     ],
     
     'allowed_origins_patterns' => [],
