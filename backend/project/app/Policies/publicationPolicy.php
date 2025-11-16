@@ -7,7 +7,7 @@ use App\Models\publication;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Auth;
 
-class publicationPolicy
+class PublicationPolicy
 {
     /**
      * Determine whether the user can view any models.
