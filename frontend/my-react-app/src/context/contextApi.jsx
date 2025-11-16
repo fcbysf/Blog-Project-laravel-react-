@@ -7,6 +7,7 @@ export const UserProvider = ({ children }) => {
   const [authUserId, setAuthUserId] = useState(null);
   const [token, setToken] = useState(sessionStorage.getItem("token") || null);
   const endPoint = "https://firstbackenddeploy.up.railway.app/";
+  console.log(token)
   const checkAuth = async () => {
     try {
       const res = await fetch(endPoint + "api/user", {
