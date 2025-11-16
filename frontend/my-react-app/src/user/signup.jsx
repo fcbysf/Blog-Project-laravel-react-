@@ -11,25 +11,23 @@ export default function SignUp() {
       navigate('/')
       return
     }
-    fetch(endPoint+'sanctum/csrf-cookie',{'credentials' : 'include'})
   },[])
   const submit = (e) => {
     e.preventDefault()
     const formData = new FormData(e.target)
-    fetch(endPoint+'register',
+    fetch(endPoint+'api/register',
         {
             method: 'POST',
             'credentials' : 'include',
             headers:{
                 'Accept' :'Application/json',
-                'X-XSRF-TOKEN' : decodeURIComponent(document.cookie.split('=')[1])
             },
             body: formData
         }
     ).then(res=>!res.ok && res.json() )
     .then(data=>{
         if(data.errors){setErrors(data.errors)}
-        else{setErrors('');navigate('/publication')} 
+        else{setErrors('')} 
   })
   };
   return (
