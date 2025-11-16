@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PubliactionRequest;
 use App\Models\Publication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PublicationController extends Controller
 {
@@ -61,8 +62,11 @@ return response()->json(
      */
     public function destroy(Publication $publication)
     {
-        $this->authorize('delete',$publication);
-        $publication->delete();
+        if($publication->user_id == Auth::id()){
+            $publication->delete();
+            return response()->json('publication deleted');
+        }
+        
         return response()->noContent();
     }
 }
