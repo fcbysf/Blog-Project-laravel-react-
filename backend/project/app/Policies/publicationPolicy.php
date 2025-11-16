@@ -46,7 +46,7 @@ class publicationPolicy
      */
     public function delete(User $user, publication $publication): bool
     {
-        return Auth::user()->id === $publication->user_id;
+        return Auth::user()->id == $publication->user_id;
     }
 
     /**
