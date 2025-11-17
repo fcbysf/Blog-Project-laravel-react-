@@ -38,12 +38,14 @@ export default function Comment() {
   };
   return (
     pub && (
+        <div className="cmtContainer">
+          <div className="pub">
       <div
         className="allC"
-        style={{ width: "100%", backgroundColor: "whitesmoke" }}
+        style={{ width: "100%"}}
       >
         <div className="backBtn">
-          <button className="button2" onClick={() => navigate("/publication")}>
+          <button className="button2"  onClick={() => navigate("/publication")}>
             <svg
               height="16"
               width="16"
@@ -56,8 +58,6 @@ export default function Comment() {
             <span>Back</span>
           </button>
         </div>
-        <div className="cmtContainer">
-          <div className="pub">
             <div className="top">
               <div className="topLeft">
                 <img src={pub.user.image} alt="" />

@@ -78,22 +78,44 @@ display: flex;
     gap: 10px;
 }
 .AddForm{
-  border: 2px solid grey;
   border-radius: 10px;
-  padding: 30px;
+  width: 260Px;
+  background-color: white;
+  position: relative;
+  z-index: 3;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 10px;
   align-items: center;
-  border-radius: 26% 89% 66% 16% / 41% 18% 82% 38%  ;
+  border-radius: 15px;
+  box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.1), -1px -1px 30px rgba(0, 0, 0, 0.1);
+  left: 1px;
+  top: 20px;
+  animation: fromright 1s ease  ;
+}
+@keyframes fromright {
+  from{
+    width: 0px;;
+  }
+  to{
+  width: 260Px;
+  }
 }
 .AddForm input{
   width: 200px;
   padding: 15px;
   border: 0;
   border-radius: 18px;
+  background-color: whitesmoke;
+  animation: fromright 1s ease  ;
   outline:0;
+  transition: .3s ease;
+}
+.AddForm input:focus{
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.185);
+  transform: translateY(-2px);
 }
 .AddForm .submit{
   padding: 15px;

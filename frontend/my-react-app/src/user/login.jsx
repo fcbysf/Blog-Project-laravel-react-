@@ -2,100 +2,156 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { Context } from "../context/contextApi";
+import "./login.css";
 
 const LogIn = () => {
   const navigate = useNavigate();
-  const { endPoint, setIsLogedIn,setToken,isLogedIn} = useContext(Context);
+  const { endPoint, setIsLogedIn, setToken, isLogedIn } = useContext(Context);
   const [errors, setErrors] = useState("");
-useEffect(()=>{
-if(isLogedIn){
-  navigate('/publication')
-  return
-}
-},[isLogedIn])
-const submit = async (e) => {
-  e.preventDefault();
-
-  const formData = new FormData(e.target);
-  const data = Object.fromEntries(formData);
-  fetch(endPoint + "api/login", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data)
-  })
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {return res.json();}
-  })
-  .then((data) => {
-    if (data.errors) {
-      setErrors(data.errors);
-    } else {
-      setToken(data.token);
-      sessionStorage.setItem("token", data.token);
-      setIsLogedIn(true);
-      localStorage.setItem("auth", "true");
+  useEffect(() => {
+    if (isLogedIn) {
       navigate("/publication");
+      return;
     }
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-};
+  }, [isLogedIn]);
+  const submit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    fetch(endPoint + "api/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        if (data.errors) {
+          setErrors(data.errors);
+        } else {
+          setToken(data.token);
+          sessionStorage.setItem("token", data.token);
+          setIsLogedIn(true);
+          localStorage.setItem("auth", "true");
+          navigate("/publication");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <StyledWrapper>
-      <button className="button2" onClick={() => navigate("/")}>
-        Back
-      </button>
+        <button className="button2" onClick={() => navigate("/")}>
+          Back
+        </button>
 
-      <form className="form" onSubmit={submit}>
-        <div className="flex-column">
-          <label>Email</label>
-        </div>
-        <div className="inputForm">
-          <input placeholder="Enter your Email" name="email" type="text" />
-        </div>
+      <div className="test">
 
-        <div className="flex-column">
-          <label>Password</label>
-        </div>
-        <div className="inputForm">
-          <input placeholder="Enter your Password" name="password" type="password" />
-        </div>
-
-
-        <div className="flex-row">
-          <div>
-            <input type="radio" />
-            <label>Remember me</label>
+        <form className="form" onSubmit={submit}>
+          <div className="flex-column">
+            <label>Email</label>
           </div>
-          <span className="span">Forgot password?</span>
-        </div>
+          <div className="inputForm">
+            <input placeholder="Enter your Email" name="email" type="text" />
+          </div>
 
-        <button type="submit" className="button-submit">Sign In</button>
-        <Link to={"/signup"}>
-          <p className="p">
-            Don't have an account? <span className="span">Sign Up</span>
-          </p>
-        </Link>
-      </form>
+          <div className="flex-column">
+            <label>Password</label>
+          </div>
+          <div className="inputForm">
+            <input
+              placeholder="Enter your Password"
+              name="password"
+              type="password"
+            />
+          </div>
+
+          <div className="flex-row">
+            <div>
+              <input type="radio" />
+              <label>Remember me</label>
+            </div>
+            <span className="span">Forgot password?</span>
+          </div>
+
+          <button type="submit" className="button-submit">
+            Sign In
+          </button>
+          <Link to={"/signup"}>
+            <p className="p">
+              Don't have an account? <span className="span">Sign Up</span>
+            </p>
+          </Link>
+        </form>
+      </div>
     </StyledWrapper>
   );
 };
 
 const StyledWrapper = styled.div`
-  .form { display:flex; flex-direction: column; gap: 10px; background-color: #fff; padding:30px; margin:50px auto; width:450px; border-radius:20px; }
-  .inputForm { border:1.5px solid #ecedec; border-radius:10px; height:50px; display:flex; align-items:center; padding-left:10px; }
-  .inputForm input { border:none; margin-left:10px; width:100%; height:100%; border-radius:10px; }
-  .inputForm:focus-within { border-color:#2d79f3; }
-  .button-submit { margin:20px 0 10px 0; background:#151717; border:none; color:white; border-radius:10px; height:50px; width:100%; cursor:pointer; }
-  .flex-row { display:flex; justify-content:space-between; align-items:center; gap:10px; }
-  .span { color:#2d79f3; cursor:pointer; }
-  .p { text-align:center; font-size:14px; margin:5px 0; }
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff;
+    padding: 30px;
+    margin: 50px auto;
+    width: 450px;
+    border-radius: 20px;
+  }
+  .inputForm {
+    border: 1.5px solid #ecedec;
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+  }
+  .inputForm input {
+    border: none;
+    margin-left: 10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+  .inputForm:focus-within {
+    border-color: #2d79f3;
+  }
+  .button-submit {
+    margin: 20px 0 10px 0;
+    background: #151717;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+  }
+  .flex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .span {
+    color: #2d79f3;
+    cursor: pointer;
+  }
+  .p {
+    text-align: center;
+    font-size: 14px;
+    margin: 5px 0;
+  }
 `;
 
 export default LogIn;
