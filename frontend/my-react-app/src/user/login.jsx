@@ -75,7 +75,7 @@ const LogIn = () => {
               type="password"
             />
           </div>
-
+          {errors && <p style={{color:'red'}}>email or password is incorrect</p>}
           <div className="flex-row">
             <div>
               <input type="radio" />
