@@ -18,7 +18,7 @@ class PublicationFactory extends Factory
     {
         return [
             'title' => fake()->text(20),
-            'image'=> fake()->image(),
+            'image' => fake()->imageUrl(640, 480, 'posts', true),
             "user_id" => 28
         ];
     }
